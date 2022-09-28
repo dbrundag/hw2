@@ -13,20 +13,57 @@
 template <typename T>
 std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
 {
+	if(s1.size() == 0 && s2.size() == 0)
+	{
+		return NULL;
+	}
+	if(s1.size() == 0)
+	{
+		return s2;
+	}
+	if(s2.size() == 0)
+	{
+		return s1;
+	}
+	typename std::set<T> intersection_set = {};
 
-
-
-
-
+	for(typename std::set<T>::iterator it = s1.begin(); it != s1.end(); ++it)
+	{
+		if(s2.find(*it) != s2.end())
+		{
+			intersection_set.insert(*it);
+		}
+	}
+	return intersection_set;
 }
+
 template <typename T>
 std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
 {
+	if(s1.size() == 0 && s2.size() == 0)
+	{
+		return s1;
+	}
+	if(s1.size() == 0)
+	{
+		return s2;
+	}
+	if(s2.size() == 0)
+	{
+		return s1;
+	}
 
-
-
-
-
+	typename std::set<T> union_set = s1;
+	
+	//iterate through biggest set and compare sets string by string
+	if(s1.size() > s2.size()){
+		// typename std::set<T>::iterator itt = s2.begin();
+		for(typename std::set<T>::iterator it = s2.begin(); it != s2.end(); ++it)
+		{
+			union_set.insert(*it);
+		}
+	}
+	return union_set;
 }
 
 /***********************************************/
