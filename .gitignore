@@ -1,0 +1,4 @@
+*.o
+amazon
+.clang-format
+.clang-tidy

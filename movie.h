@@ -23,6 +23,9 @@ public:
      * Outputs the product info in the database format
      */
     void dump(std::ostream& os) const override;
+
+    std::string getCategory() const;
+    
 protected:
 	const std::string genre_;
 	const std::string rating_;

@@ -8,7 +8,7 @@ Product::Product(const std::string category, const std::string name, double pric
     name_(name),
     price_(price),
     qty_(qty),
-    category_(category)
+		category_(category)
 {
 
 }

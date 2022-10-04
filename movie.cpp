@@ -1,4 +1,5 @@
 #include "movie.h"
+#include <iomanip>
 
 Movie::Movie(const std::string category, const std::string name, const std::string genre, const std::string rating,  double price, int qty) : 
 		Product(category, name, price, qty),
@@ -13,9 +14,11 @@ Movie::Movie(const std::string category, const std::string name, const std::stri
 		{
 			std::set<std::string> keywords = parseStringToWords(getName());
 			std::set<std::string> genre = parseStringToWords(genre_);
-			keywords = setUnion(keywords, genre);
-			keywords.insert(rating_); //should not have any gaps to parse
-			
+			for(std::set<std::string>::iterator it = genre.begin(); it != genre.end(); ++it)
+			{
+				keywords.insert(*it);
+			}
+			// keywords = setUnion(keywords, genre);			
 			return keywords;
 		}
 
@@ -32,7 +35,7 @@ Movie::Movie(const std::string category, const std::string name, const std::stri
      */
     std::string Movie::displayString() const
 		{
-			std::string productInfo = getName() + " " + genre_ + " " + rating_ + " " + std::to_string(getPrice()) + " " + std::to_string(getQty());
+			std::string productInfo = getName() + "\n" + "Genre: " + genre_ + " Rating: " + rating_ + "\n" + std::to_string(getPrice()) + " " + std::to_string(getQty()) + " left.";
 			return productInfo;
 		}
 		
@@ -41,5 +44,12 @@ Movie::Movie(const std::string category, const std::string name, const std::stri
      */
     void Movie::dump(std::ostream& os) const
 		{
-			os << category_  << "/n" << getName() << "/n" << std::to_string(getPrice()) << "/n" << std::to_string(getQty()) << "/n" << genre_ << "n/" << rating_;
+			os << "movie"  << std::endl << getName() << std::endl;
+			os << std::fixed << std::setprecision(2) << getPrice() << std::endl;
+			os << std::to_string(getQty()) << std::endl << genre_ << std::endl << rating_ << std::endl;
+		}
+
+		std::string Movie::getCategory() const
+		{
+			return "movie";
 		}

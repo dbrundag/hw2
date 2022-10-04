@@ -1,4 +1,5 @@
 		#include "clothing.h"
+		#include <iomanip>
 
 		Clothing::Clothing(const std::string category, const std::string name, const std::string size, const std::string brand,  double price, int qty) : 
 		Product(category, name, price, qty),
@@ -13,9 +14,11 @@
 		{
 			std::set<std::string> keywords = parseStringToWords(getName());
 			std::set<std::string> brand = parseStringToWords(brand_);
-			keywords = setUnion(keywords, brand);
-			keywords.insert(size_); //should not have any gaps to parse
-			
+			for(std::set<std::string>::iterator it = brand.begin(); it != brand.end(); ++it)
+			{
+				keywords.insert(*it);
+			}
+			// keywords = setUnion(keywords, brand);			
 			return keywords;
 		}
 
@@ -32,7 +35,7 @@
      */
     std::string Clothing::displayString() const
 		{
-			std::string productInfo = getName() + " " + brand_ + " " + size_ + " " + std::to_string(getPrice()) + " " + std::to_string(getQty());
+			std::string productInfo = getName() + "\n" + "Size: " + size_ + " Brand: " + brand_ + "\n" + std::to_string(getPrice()) + " " + std::to_string(getQty()) + " left.";
 			return productInfo;
 		}
 		
@@ -41,5 +44,12 @@
      */
     void Clothing::dump(std::ostream& os) const
 		{
-			os << category_  << "/n" << getName() << "/n" << std::to_string(getPrice()) << "/n" << std::to_string(getQty()) << "/n" << size_ << "n/" << brand_;
+			os << "clothing"  << std::endl << getName() <<std::endl;
+			os <<std::fixed << std::setprecision(2) << getPrice() << std::endl;
+			os << std::to_string(getQty()) << std::endl << size_ << std::endl << brand_ << std::endl;
+		}
+
+		std::string Clothing::getCategory() const
+		{
+			return "clothing";
 		}

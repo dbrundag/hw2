@@ -43,7 +43,6 @@ protected:
     std::string name_;
     double price_;
     int qty_;
-    std::string category_;
-
+		std::string category_;
 };
 #endif
