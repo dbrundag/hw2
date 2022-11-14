@@ -145,7 +145,9 @@
 						continue;
 					}
 					//list eech item in cart
-					std::cout << count << ".) " << (*it)->getName() << std::endl;
+					//std::cout << count << ".) " << (*it)->getName() << std::endl;
+					std::cout << "Item " << count << std::endl;
+					std::cout << (*it)->displayString() << std::endl << std::endl;
 					count += 1;
 				}
 			}
@@ -202,13 +204,13 @@
     void MyDataStore::dump(std::ostream& ofile)
 		{
 			//PRINT TO FILE
-			ofile << "<product>" << std::endl;
+			ofile << "<products>" << std::endl;
 			for(std::set<Product*>::iterator it = products.begin(); it != products.end(); ++it)
 			{
 				//call dump of each product to print all category specific members
 				(*it)->dump(ofile);
 			}
-			ofile << "</product>\n";
+			ofile << "</products>\n";
 
 			ofile << "<users>\n";
 			for(std::vector<User*>::iterator it = users_list.begin(); it != users_list.end(); ++it)

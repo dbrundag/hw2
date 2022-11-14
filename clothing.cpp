@@ -35,7 +35,10 @@
      */
     std::string Clothing::displayString() const
 		{
-			std::string productInfo = getName() + "\n" + "Size: " + size_ + " Brand: " + brand_ + "\n" + std::to_string(getPrice()) + " " + std::to_string(getQty()) + " left.";
+			std::stringstream price_buffer;
+			price_buffer << std::fixed << std::setprecision(2) << getPrice();
+
+			std::string productInfo = getName() + "\n" + "Size: " + size_ + " Brand: " + brand_ + "\n" + price_buffer.str() + " " + std::to_string(getQty()) + " left.";
 			return productInfo;
 		}
 		

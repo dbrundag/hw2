@@ -37,7 +37,10 @@
      */
     std::string Book::displayString() const
 		{
-			std::string productInfo = getName() + "\n" + "Author: " + author_ + " ISBN: " + ISBN_ + "\n" + std::to_string(getPrice()) + " " + std::to_string(getQty()) + " left.";
+			std::stringstream price_buffer;
+			price_buffer << std::fixed << std::setprecision(2) << getPrice();
+
+			std::string productInfo = getName() + "\n" + "Author: " + author_ + " ISBN: " + ISBN_ + "\n" + price_buffer.str() + " " + std::to_string(getQty()) + " left.";
 			return productInfo;
 		}
 		
